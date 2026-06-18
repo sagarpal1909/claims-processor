@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { submitClaim } from '../api';
 
 const CATEGORIES = ['CONSULTATION', 'DIAGNOSTIC', 'PHARMACY', 'DENTAL', 'VISION', 'ALTERNATIVE_MEDICINE'];
 const DOC_TYPES = ['PRESCRIPTION', 'HOSPITAL_BILL', 'PHARMACY_BILL', 'LAB_REPORT', 'DIAGNOSTIC_REPORT', 'DISCHARGE_SUMMARY', 'DENTAL_REPORT'];
@@ -109,14 +110,8 @@ export default function ClaimForm({ onResult, initialData, onNewClaim }) {
           ...(file_data ? { file_data, file_media_type } : {}),
         })),
       };
-      const res = await fetch('/claims', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || 'Submission failed');
-      onResult(data, payload);
+      const res = await submitClaim(payload);
+      onResult(res.data, payload);
     } catch (err) {
       setError(err.message);
     } finally {

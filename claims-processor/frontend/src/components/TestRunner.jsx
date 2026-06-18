@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { runTestCases } from '../api';
 
 const STATUS_COLOR = {
   APPROVED: '#38a169', PARTIAL: '#d69e2e', REJECTED: '#e53e3e', MANUAL_REVIEW: '#3182ce',
@@ -11,10 +12,12 @@ export default function TestRunner() {
 
   const run = async () => {
     setLoading(true);
+  
     try {
-      const res = await fetch('/test-run', { method: 'POST' });
-      const data = await res.json();
-      setResults(data);
+      const res = await runTestCases();
+      setResults(res.data);
+    } catch (err) {
+      console.error(err);
     } finally {
       setLoading(false);
     }
