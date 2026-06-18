@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { runTestCases } from '../api';
+import { runTestCases } from '../api/client';
 
 const STATUS_COLOR = {
   APPROVED: '#38a169', PARTIAL: '#d69e2e', REJECTED: '#e53e3e', MANUAL_REVIEW: '#3182ce',

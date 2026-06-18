@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { submitClaim } from '../api';
+import { submitClaim } from '../api/client';
 
 const CATEGORIES = ['CONSULTATION', 'DIAGNOSTIC', 'PHARMACY', 'DENTAL', 'VISION', 'ALTERNATIVE_MEDICINE'];
 const DOC_TYPES = ['PRESCRIPTION', 'HOSPITAL_BILL', 'PHARMACY_BILL', 'LAB_REPORT', 'DIAGNOSTIC_REPORT', 'DISCHARGE_SUMMARY', 'DENTAL_REPORT'];
